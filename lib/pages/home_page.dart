@@ -20,25 +20,37 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        Container(
-          width: double.infinity,
-          height: 250,
-          color: Color(0xFF133EFF),
-          child: Row(
-            children: [
-              Column(
-                children: [
-                  Text("Selamat ${greeting()},"),
-                  Text("Nailul Firdaus!"),
-                ],
-              ),
-              // Image.asset(""),
-            ],
-          ),
-        )
-      ],
+        body: SafeArea(
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 250,
+            color: Color(0xFF133EFF),
+            child: Row(
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      "Selamat ${greeting()},",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      "Nailul Firdaus!",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     ));
   }
 }
