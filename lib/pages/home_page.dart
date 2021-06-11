@@ -61,6 +61,32 @@ extension DateTimeExtension on DateTime {
 }
 
 class _HomePageState extends State<HomePage> {
+  String timeString = "";
+  String dateString = "";
+  String formatDateTime(DateTime dateTime) {
+    return DateFormat('hh:mm:ss').format(dateTime);
+  }
+
+  @override
+  void initState() {
+    timeString = formatDateTime(DateTime.now());
+    dateString =
+        "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}";
+    Timer.periodic(Duration(seconds: 1), (Timer t) => getTime());
+
+    super.initState();
+  }
+
+  void getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedDateTime = formatDateTime(now);
+
+    setState(() {
+      timeString = formattedDateTime;
+      dateString = dateString;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
