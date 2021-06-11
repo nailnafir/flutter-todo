@@ -95,6 +95,7 @@ class _HomePageState extends State<HomePage> {
                         height: 180,
                         padding:
                             EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                        child: categories(),
                       ),
                     ),
                   ),
@@ -167,5 +168,79 @@ userProfile() {
         ),
       ],
     ),
+  );
+}
+
+categories() {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
+            style: TextStyle(
+              fontSize: 12,
+              color: Color(0xFF133EFF),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            "${DateTime.now().hour}:${DateTime.now().minute}",
+            style: TextStyle(
+              fontSize: 12,
+              color: Color(0xFF133EFF),
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+      Divider(color: Color(0xFFC5C5C5)),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 8),
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Color(0x25133EFF),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  Icons.person_outline,
+                  color: Color(0xFF133EFF),
+                  size: 30,
+                ),
+              ),
+              Text("Personal"),
+            ],
+          ),
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 8),
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Color(0x25133EFF),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  Icons.work_outline,
+                  color: Color(0xFF133EFF),
+                  size: 30,
+                ),
+              ),
+              Text("Pekerjaan"),
+            ],
+          ),
+        ],
+      ),
+    ],
   );
 }
