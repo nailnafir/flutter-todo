@@ -1,9 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+extension DateTimeExtension on DateTime {
+  String get dayName {
+    switch (this.weekday) {
+      case 1:
+        return "Senin";
+      case 2:
+        return "Selasa";
+      case 3:
+        return "Rabu";
+      case 4:
+        return "Kamis";
+      case 5:
+        return "Jumat";
+      case 6:
+        return "Sabtu";
+      default:
+        return "Minggu";
+    }
+  }
+
+  String get monthName {
+    switch (this.month) {
+      case 1:
+        return "Januari";
+      case 2:
+        return "Februari";
+      case 3:
+        return "Maret";
+      case 4:
+        return "April";
+      case 5:
+        return "Mei";
+      case 6:
+        return "Juni";
+      case 7:
+        return "Juli";
+      case 8:
+        return "Agustus";
+      case 9:
+        return "September";
+      case 10:
+        return "Oktober";
+      case 11:
+        return "November";
+      default:
+        return "Desember";
+    }
+  }
+}
+
+class _HomePageState extends State<HomePage> {
   String greeting() {
     var time = DateTime.now().hour;
 
@@ -32,6 +87,7 @@ class HomePage extends StatelessWidget {
                 color: Color(0xFF133EFF),
                 child: Column(
                   children: [
+                    SizedBox(height: 10),
                     Container(
                       margin: EdgeInsets.all(24),
                       child: Row(
@@ -71,94 +127,65 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 18),
-                    Expanded(
-                      child: Text(
-                        '"Jangan Lupa Sholat!"',
-                        style: GoogleFonts.architectsDaughter().copyWith(
-                          fontSize: 24,
-                          color: Colors.white,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.clip,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
                   ],
                 ),
               ),
-              Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 2 * 24,
-                  height: 100,
-                  margin: EdgeInsets.only(top: 250 - 50),
-                  child: Card(
-                    elevation: 4,
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      "${DateTime.now().day} ${DateTime.now()}",
-                      style: TextStyle(fontSize: 18),
+              Column(
+                children: [
+                  SizedBox(height: 200),
+                  Center(
+                    child: Card(
+                      elevation: 4,
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 2 * 24,
+                        height: 100,
+                        padding:
+                            EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
+                                  style: TextStyle(fontSize: 12),
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  "${DateTime.now().hour}:${DateTime.now().minute}",
+                                  style: TextStyle(fontSize: 12),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            Divider(
+                              color: Color(0xFFB8B8B8),
+                            ),
+                            Text(
+                              '"Jangan Lupa Sholat!"',
+                              style: GoogleFonts.architectsDaughter()
+                                  .copyWith(fontSize: 24),
+                              maxLines: 2,
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ],
           )
         ],
       ),
     );
-  }
-}
-
-extension DateTimeExtension on DateTime {
-  String get dayName {
-    switch (this.weekday) {
-      case 1:
-        return "Senin";
-      case 2:
-        return "Selasa";
-      case 3:
-        return "Rabu";
-      case 4:
-        return "Kamis";
-      case 5:
-        return "Jumat";
-      case 6:
-        return "Sabtu";
-      default:
-        return "Minggu";
-    }
-  }
-
-  String get monthName {
-    switch (this.weekday) {
-      case 1:
-        return "Januari";
-      case 2:
-        return "Februari";
-      case 3:
-        return "Maret";
-      case 4:
-        return "April";
-      case 5:
-        return "Mei";
-      case 6:
-        return "Juni";
-      case 7:
-        return "Juli";
-      case 8:
-        return "Agustus";
-      case 9:
-        return "September";
-      case 10:
-        return "Oktober";
-      case 6:
-        return "November";
-      default:
-        return "Desember";
-    }
   }
 }
