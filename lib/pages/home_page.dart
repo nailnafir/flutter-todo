@@ -87,12 +87,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  @override
-  void dispose() {
-    Timer timer = Timer.periodic(Duration(seconds: 1), (Timer t) => getTime());
-    timer.cancel();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   Timer timer = Timer.periodic(Duration(seconds: 1), (Timer t) => getTime());
+  //   timer.cancel();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
