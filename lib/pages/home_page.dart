@@ -98,15 +98,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFE3E8FF),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
           Stack(
             children: [
               //NOTE: USER PROFILE
               Container(
                 width: double.infinity,
-                height: 200,
+                height: 180,
                 color: Color(0xFF133EFF),
                 padding: EdgeInsets.symmetric(horizontal: 24),
                 child: SafeArea(
@@ -121,7 +120,7 @@ class _HomePageState extends State<HomePage> {
               //NOTE: CATEGORIES
               Column(
                 children: [
-                  SizedBox(height: 130),
+                  SizedBox(height: 180 - (180 / 2.5)),
                   Center(
                     child: Card(
                       elevation: 4,
@@ -131,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Container(
                         width: MediaQuery.of(context).size.width - 2 * 24,
-                        height: 170,
+                        height: 150,
                         padding:
                             EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                         child: categories(),
@@ -293,12 +292,45 @@ class _HomePageState extends State<HomePage> {
   }
 
   todoMain() {
-    return Container(
-      margin: EdgeInsets.only(bottom: 12),
-      child: Text(
-        "Tugas Hari Ini",
-        style: TextStyle(fontSize: 18),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Tugas Hari Ini",
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              "Sisa 3 Lagi",
+              style: TextStyle(fontSize: 12),
+            ),
+          ],
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Colors.white,
+          ),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: "Ketik tugas barumu....",
+              suffixIcon: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.add_box,
+                  color: Color(0xFF133EFF),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
