@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color(0xFFE3E8FF),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300),
+        preferredSize: Size.fromHeight(280),
         child: AppBar(
           elevation: 0,
           backgroundColor: Color(0xFFE3E8FF),
@@ -145,17 +145,66 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: ListView(
+      body: Stack(
         children: [
-          //NOTE: TO DO MAIN
-          Column(
+          NotificationListener<OverscrollIndicatorNotification>(
+            onNotification: (overscroll) {
+              overscroll.disallowGlow();
+              return false;
+            },
+            child: ListView(
+              children: [
+                //NOTE: TO DO MAIN
+                Stack(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 24),
+                          child: todoMain(),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          Stack(
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: todoMain(),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  width: double.infinity,
+                  height: 85,
+                  color: Color(0xFF133EFF),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                  ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(borderSide: BorderSide.none),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            Icons.add_box,
+                            color: Color(0xFF133EFF),
+                          ),
+                          onPressed: () {},
+                        ),
+                        hintText: "Tambah tugas barumu...."),
+                  ),
+                ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -282,6 +331,8 @@ class _HomePageState extends State<HomePage> {
         TodoItem(title: "Minum susu pink"),
         TodoItem(title: "Makan nastar"),
         TodoItem(title: "Main dota"),
+        TodoItem(title: "Trading crypto"),
+        TodoItem(title: "Trading saham"),
       ],
     );
   }
