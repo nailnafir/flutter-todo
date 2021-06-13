@@ -97,32 +97,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFE3E8FF),
-      body: ListView(
-        children: [
-          Stack(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(300),
+        child: AppBar(
+          elevation: 0,
+          backgroundColor: Color(0xFFE3E8FF),
+          flexibleSpace: Stack(
             children: [
-              //NOTE: USER PROFILE
-              Container(
-                width: double.infinity,
-                height: 180,
-                color: Color(0xFF133EFF),
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: SafeArea(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      userProfile(),
-                    ],
-                  ),
-                ),
-              ),
-              //NOTE: CATEGORIES
               Column(
                 children: [
-                  SizedBox(height: 180 - (180 / 2.5)),
-                  Center(
-                    child: Card(
+                  Container(
+                    color: Color(0xFF133EFF),
+                    child: Column(
+                      children: [
+                        userProfile(),
+                        SizedBox(height: 50),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Center(
+                child: Column(
+                  children: [
+                    SizedBox(height: 130),
+                    Card(
                       elevation: 4,
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
@@ -136,16 +135,21 @@ class _HomePageState extends State<HomePage> {
                         child: categories(),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
+        ),
+      ),
+      backgroundColor: Color(0xFFE3E8FF),
+      body: ListView(
+        children: [
           //NOTE: TO DO MAIN
           Column(
             children: [
               Container(
-                padding: EdgeInsets.all(24),
+                padding: EdgeInsets.symmetric(horizontal: 24),
                 child: todoMain(),
               ),
             ],
@@ -172,6 +176,7 @@ class _HomePageState extends State<HomePage> {
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 24),
+      padding: EdgeInsets.all(24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
