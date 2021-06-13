@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/widgets/todo_item.dart';
 import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
@@ -97,6 +98,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFE3E8FF),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(300),
         child: AppBar(
@@ -142,7 +144,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      backgroundColor: Color(0xFFE3E8FF),
       body: ListView(
         children: [
           //NOTE: TO DO MAIN
@@ -313,27 +314,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 12),
-          // padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.white,
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-                border: OutlineInputBorder(borderSide: BorderSide.none),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    Icons.add_box,
-                    color: Color(0xFF133EFF),
-                  ),
-                  onPressed: () {},
-                ),
-                hintText: "Tambah tugas barumu...."),
-          ),
-        ),
+        TodoItem(),
+        TodoItem(),
+        TodoItem(),
       ],
     );
   }
