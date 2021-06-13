@@ -315,24 +315,23 @@ class _HomePageState extends State<HomePage> {
         ),
         Container(
           margin: EdgeInsets.symmetric(vertical: 12),
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          // padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: Colors.white,
           ),
-          child: TextFormField(
+          child: TextField(
             decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: "Ketik tugas barumu....",
-              suffixIcon: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.add_box,
-                  color: Color(0xFF133EFF),
+                border: OutlineInputBorder(borderSide: BorderSide.none),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    Icons.add_box,
+                    color: Color(0xFF133EFF),
+                  ),
+                  onPressed: () {},
                 ),
-              ),
-            ),
+                hintText: "Tambah tugas barumu...."),
           ),
         ),
       ],
