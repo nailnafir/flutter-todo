@@ -314,9 +314,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        TodoItem(),
-        TodoItem(),
-        TodoItem(),
+        TodoItem(title: "Minum susu pink"),
+        TodoItem(title: "Makan nastar"),
+        TodoItem(title: "Main dota"),
       ],
     );
   }
