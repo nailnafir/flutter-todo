@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/widgets/menu_item.dart';
 import 'package:flutter_todo/widgets/todo_item.dart';
 import 'package:intl/intl.dart';
 
@@ -253,44 +254,8 @@ class _HomePageState extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(bottom: 8),
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Color(0x25133EFF),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Icon(
-                    Icons.person_outline,
-                    color: Color(0xFF133EFF),
-                    size: 30,
-                  ),
-                ),
-                Text("Personal"),
-              ],
-            ),
-            Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(bottom: 8),
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Color(0x25133EFF),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Icon(
-                    Icons.work_outline,
-                    color: Color(0xFF133EFF),
-                    size: 30,
-                  ),
-                ),
-                Text("Pekerjaan"),
-              ],
-            ),
+            MenuItem(title: "Personal", icon: Icons.person),
+            MenuItem(title: "Pekerjaan", icon: Icons.work_outlined),
           ],
         ),
       ],
