@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color(0xFFE3E8FF),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(280),
+        preferredSize: Size.fromHeight(300),
         child: AppBar(
           elevation: 0,
           backgroundColor: Color(0xFFE3E8FF),
@@ -348,7 +348,11 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         Column(
-          children: todos.map((item) => TodoItem(title: item.title)).toList(),
+          children: todos
+              .map((item) => Container(
+                  margin: EdgeInsets.only(top: 8),
+                  child: TodoItem(title: item.title)))
+              .toList(),
         )
       ],
     );
