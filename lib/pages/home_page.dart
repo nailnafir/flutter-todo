@@ -212,6 +212,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               );
 
+                              TodoModel.taskCount++;
+
                               todoController.text = "";
                             });
                           },
@@ -340,7 +342,7 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 18),
             ),
             Text(
-              "Sisa lagi",
+              "Sisa ${TodoModel.taskCount} lagi",
               style: TextStyle(fontSize: 12),
             ),
           ],
