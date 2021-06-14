@@ -343,18 +343,48 @@ class _HomePageState extends State<HomePage> {
               "Tugas Hari Ini",
               style: TextStyle(fontSize: 18),
             ),
-            Text(
-              "Sisa ${TodoModel.taskCount} lagi",
-              style: TextStyle(fontSize: 12),
-            ),
+            TodoModel.taskCount < 1
+                ? Text(
+                    "Tugas selesai",
+                    style: TextStyle(fontSize: 12, color: Color(0xFF133EFF)),
+                  )
+                : Text(
+                    "Sisa ${TodoModel.taskCount} lagi",
+                    style: TextStyle(fontSize: 12, color: Colors.red),
+                  ),
           ],
         ),
         Column(
-          children: todos
-              .map((item) => Container(
-                  margin: EdgeInsets.only(top: 8),
-                  child: TodoItem(title: item.title)))
-              .toList(),
+          children: todos.length < 1
+              ? [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "images/undraw_questions.png",
+                          width: 250,
+                          height: 150,
+                        ),
+                        SizedBox(height: 4),
+                        Center(
+                            child: Text(
+                          "Tidak ada tugas!",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        )),
+                      ],
+                    ),
+                  )
+                ]
+              : todos
+                  .map((item) => Container(
+                      margin: EdgeInsets.only(top: 8),
+                      child: TodoItem(title: item.title)))
+                  .toList(),
         )
       ],
     );
