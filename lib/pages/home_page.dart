@@ -65,6 +65,7 @@ extension DateTimeExtension on DateTime {
 
 class _HomePageState extends State<HomePage> {
   List<TodoModel> todos = [];
+
   TextEditingController todoController = TextEditingController(text: "");
 
   String timeString = "";
@@ -204,8 +205,12 @@ class _HomePageState extends State<HomePage> {
                           ),
                           onPressed: () {
                             setState(() {
-                              todos.add(TodoModel(
-                                  title: todoController.text, isDone: false));
+                              todos.add(
+                                TodoModel(
+                                  title: todoController.text,
+                                  isDone: false,
+                                ),
+                              );
 
                               todoController.text = "";
                             });
@@ -335,7 +340,7 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 18),
             ),
             Text(
-              "Sisa " + todos.length.toString() + " Lagi",
+              "Sisa lagi",
               style: TextStyle(fontSize: 12),
             ),
           ],
