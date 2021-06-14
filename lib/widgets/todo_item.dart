@@ -26,27 +26,24 @@ class _TodoItemState extends State<TodoItem> {
           }
         });
       },
-      child: Container(
-        margin: EdgeInsets.only(top: 12, bottom: 4),
-        child: Card(
-          elevation: 4,
-          color: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          child: ListTile(
-            title: Text(
-              widget.title,
-              style: TextStyle(
-                color: isDone ? Colors.grey : Colors.black,
-                decoration: isDone ? TextDecoration.lineThrough : null,
-              ),
+      child: Card(
+        elevation: 4,
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: ListTile(
+          title: Text(
+            widget.title,
+            style: TextStyle(
+              color: isDone ? Colors.grey : Colors.black,
+              decoration: isDone ? TextDecoration.lineThrough : null,
             ),
-            trailing: isDone
-                ? Icon(
-                    Icons.check,
-                    color: Color(0xFF133EFF),
-                  )
-                : SizedBox(),
           ),
+          trailing: isDone
+              ? Icon(
+                  Icons.check,
+                  color: Color(0xFF133EFF),
+                )
+              : SizedBox(),
         ),
       ),
     );
