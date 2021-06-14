@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/models/todo_model.dart';
 import 'package:flutter_todo/widgets/menu_item.dart';
 import 'package:flutter_todo/widgets/todo_item.dart';
 import 'package:intl/intl.dart';
@@ -63,6 +64,8 @@ extension DateTimeExtension on DateTime {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<TodoModel> todos = [];
+
   String timeString = "";
   String dateString = "";
   String formatDateTime(DateTime dateTime) {
