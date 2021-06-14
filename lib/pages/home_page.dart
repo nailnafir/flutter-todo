@@ -204,18 +204,20 @@ class _HomePageState extends State<HomePage> {
                             color: Color(0xFF133EFF),
                           ),
                           onPressed: () {
-                            setState(() {
-                              todos.add(
-                                TodoModel(
-                                  title: todoController.text,
-                                  isDone: false,
-                                ),
-                              );
+                            if (todoController.text.trim() != "") {
+                              setState(() {
+                                TodoModel.taskCount++;
 
-                              TodoModel.taskCount++;
+                                todos.add(
+                                  TodoModel(
+                                    title: todoController.text.trim(),
+                                    isDone: false,
+                                  ),
+                                );
 
-                              todoController.text = "";
-                            });
+                                todoController.text = "";
+                              });
+                            }
                           },
                         ),
                         hintText: "Tambah tugas barumu...."),
