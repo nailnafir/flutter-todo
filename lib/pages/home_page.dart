@@ -65,6 +65,7 @@ extension DateTimeExtension on DateTime {
 
 class _HomePageState extends State<HomePage> {
   List<TodoModel> todos = [];
+  TextEditingController todoController = TextEditingController(text: "");
 
   String timeString = "";
   String dateString = "";
@@ -192,7 +193,8 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.white,
                   ),
-                  child: TextField(
+                  child: TextFormField(
+                    controller: todoController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(borderSide: BorderSide.none),
                         suffixIcon: IconButton(
@@ -200,7 +202,14 @@ class _HomePageState extends State<HomePage> {
                             Icons.add_box,
                             color: Color(0xFF133EFF),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              todos.add(TodoModel(
+                                  title: todoController.text, isDone: false));
+
+                              todoController.text = "";
+                            });
+                          },
                         ),
                         hintText: "Tambah tugas barumu...."),
                   ),
@@ -326,16 +335,14 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 18),
             ),
             Text(
-              "Sisa 3 Lagi",
+              "Sisa " + todos.length.toString() + " Lagi",
               style: TextStyle(fontSize: 12),
             ),
           ],
         ),
-        TodoItem(title: "Minum susu pink"),
-        TodoItem(title: "Makan nastar"),
-        TodoItem(title: "Main dota"),
-        TodoItem(title: "Trading crypto"),
-        TodoItem(title: "Trading saham"),
+        Column(
+          children: todos.map((item) => TodoItem(title: item.title)).toList(),
+        )
       ],
     );
   }
