@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/models/todo_model.dart';
 
 class TodoItem extends StatefulWidget {
   final String title;
@@ -18,6 +19,11 @@ class _TodoItemState extends State<TodoItem> {
       onTap: () {
         setState(() {
           isDone = !isDone;
+          if (isDone) {
+            TodoModel.taskCount--;
+          } else {
+            TodoModel.taskCount++;
+          }
         });
       },
       child: Container(
