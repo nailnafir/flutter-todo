@@ -66,6 +66,8 @@ extension DateTimeExtension on DateTime {
 class _HomePageState extends State<HomePage> {
   List<TodoModel> todos = [];
 
+  bool isFirstTask = false;
+
   TextEditingController todoController = TextEditingController(text: "");
 
   String timeString = "";
@@ -208,6 +210,8 @@ class _HomePageState extends State<HomePage> {
                               setState(() {
                                 TodoModel.taskCount++;
 
+                                isFirstTask = true;
+
                                 todos.add(
                                   TodoModel(
                                     title: todoController.text.trim(),
@@ -344,10 +348,13 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 18),
             ),
             TodoModel.taskCount < 1
-                ? Text(
-                    "Tugas selesai",
-                    style: TextStyle(fontSize: 12, color: Color(0xFF133EFF)),
-                  )
+                ? !isFirstTask
+                    ? Text("")
+                    : Text(
+                        "Tugas selesai",
+                        style:
+                            TextStyle(fontSize: 12, color: Color(0xFF133EFF)),
+                      )
                 : Text(
                     "Sisa ${TodoModel.taskCount} lagi",
                     style: TextStyle(fontSize: 12, color: Colors.red),
