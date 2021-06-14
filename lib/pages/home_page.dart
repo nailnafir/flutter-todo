@@ -392,7 +392,8 @@ class _HomePageState extends State<HomePage> {
                       margin: EdgeInsets.only(top: 8),
                       child: TodoItem(title: item.title)))
                   .toList(),
-        )
+        ),
+        SizedBox(height: 24),
       ],
     );
   }
