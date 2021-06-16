@@ -222,7 +222,11 @@ class _HomePageState extends State<HomePage> {
 
                                 saveTask();
 
-                                todoController.text = "";
+                                if (saveTask() == true) {
+                                  todoController.text = "";
+                                } else {
+                                  print("Gagal menyimpan data");
+                                }
                               });
                             }
                           },
