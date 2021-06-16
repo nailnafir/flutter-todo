@@ -407,6 +407,14 @@ class _HomePageState extends State<HomePage> {
     final value = todoController.text.trim();
 
     prefs.setString(key, value);
-    print("Berhasil menyimpan tugas");
+    print("Berhasil menyimpan tugas: $value");
+  }
+
+  loadTask() async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = "my_task_key";
+    final value = prefs.getString(key) ?? 0;
+
+    print("Berhasil mengambil tugas: $value");
   }
 }
