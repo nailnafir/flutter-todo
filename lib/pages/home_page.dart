@@ -5,6 +5,7 @@ import 'package:flutter_todo/models/todo_model.dart';
 import 'package:flutter_todo/widgets/menu_item.dart';
 import 'package:flutter_todo/widgets/todo_item.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -219,6 +220,8 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 );
 
+                                saveTask();
+
                                 todoController.text = "";
                               });
                             }
@@ -396,5 +399,14 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: 24),
       ],
     );
+  }
+
+  saveTask() async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = "my_task_key";
+    final value = todoController.text.trim();
+
+    prefs.setString(key, value);
+    print("Berhasil menyimpan tugas");
   }
 }
