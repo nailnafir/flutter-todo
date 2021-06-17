@@ -5,7 +5,7 @@ import 'package:flutter_todo/models/todo_model.dart';
 import 'package:flutter_todo/widgets/menu_item.dart';
 import 'package:flutter_todo/widgets/todo_item.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -71,14 +71,37 @@ class _HomePageState extends State<HomePage> {
 
   TextEditingController todoController = TextEditingController(text: "");
 
+  // String task = ""; to save data
   String timeString = "";
   String dateString = "";
+
   String formatDateTime(DateTime dateTime) {
     return DateFormat('HH:mm:ss').format(dateTime);
   }
 
+  // to save data
+  // Future<String> loadData() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   final key = "my_task_key";
+
+  //   String task = prefs.getString(key)!;
+  //   print("Berhasil mengambil tugas: $task");
+  //   return task;
+  // }
+
+  // Future<String> saveData() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   final key = "my_task_key";
+  //   String task = todoController.text.trim();
+
+  //   prefs.setString(key, task);
+  //   print("Berhasil menyimpan tugas: $task");
+  //   return task;
+  // }
+
   @override
   void initState() {
+    // loadData().then(loadTask); to save data
     timeString = formatDateTime(DateTime.now());
     dateString =
         "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}";
@@ -220,13 +243,11 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 );
 
-                                saveTask();
+                                todoController.text = "";
 
-                                if (saveTask() == true) {
-                                  todoController.text = "";
-                                } else {
-                                  print("Gagal menyimpan data");
-                                }
+                                // to save data
+                                // saveData()
+                                //     .then((value) => todoController.text = "");
                               });
                             }
                           },
@@ -344,6 +365,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   todoMain() {
+    setState(() {});
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -405,20 +428,28 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  saveTask() async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = "my_task_key";
-    final value = todoController.text.trim();
+  // to save data
+  // void loadTask(String? updateTask) {
+  //   setState(() {
+  //     this.task = updateTask ?? "";
+  //   });
+  // }
 
-    prefs.setString(key, value);
-    print("Berhasil menyimpan tugas: $value");
-  }
+  // default setting save data
+  // saveTask() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   final key = "my_task_key";
+  //   String value = todoController.text.trim();
 
-  loadTask() async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = "my_task_key";
-    final value = prefs.getString(key) ?? 0;
+  //   prefs.setString(key, value);
+  //   print("Berhasil menyimpan tugas: $value");
+  // }
 
-    print("Berhasil mengambil tugas: $value");
-  }
+  // loadTask() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final key = "my_task_key";
+  //   String value = prefs.getString(key).toString();
+
+  //   print("Berhasil mengambil tugas: $value");
+  // }
 }
