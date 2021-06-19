@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/models/task_counter_model.dart';
 import 'package:flutter_todo/models/todo_model.dart';
 import 'package:flutter_todo/widgets/menu_item.dart';
 import 'package:flutter_todo/widgets/todo_item.dart';
@@ -232,7 +233,7 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             if (todoController.text.trim() != "") {
                               setState(() {
-                                TodoModel.taskCount++;
+                                TaskCounterModel.taskCount++;
 
                                 isFirstTask = true;
 
@@ -377,7 +378,7 @@ class _HomePageState extends State<HomePage> {
               "Tugas Hari Ini",
               style: TextStyle(fontSize: 18),
             ),
-            TodoModel.taskCount < 1
+            TaskCounterModel.taskCount < 1
                 ? !isFirstTask
                     ? Text("")
                     : Text(
@@ -386,7 +387,7 @@ class _HomePageState extends State<HomePage> {
                             TextStyle(fontSize: 12, color: Color(0xFF133EFF)),
                       )
                 : Text(
-                    "Sisa ${TodoModel.taskCount} lagi",
+                    "Sisa ${TaskCounterModel.taskCount} lagi",
                     style: TextStyle(fontSize: 12, color: Colors.red),
                   ),
           ],
