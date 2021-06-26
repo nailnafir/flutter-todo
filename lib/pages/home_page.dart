@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/models/task_counter_model.dart';
 import 'package:flutter_todo/models/todo_model.dart';
 import 'package:flutter_todo/widgets/menu_item.dart';
+import 'package:flutter_todo/widgets/task_counter.dart';
 import 'package:flutter_todo/widgets/todo_item.dart';
 import 'package:intl/intl.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -67,8 +67,6 @@ extension DateTimeExtension on DateTime {
 
 class _HomePageState extends State<HomePage> {
   List<TodoModel> todos = [];
-
-  bool isFirstTask = false;
 
   TextEditingController todoController = TextEditingController(text: "");
 
@@ -233,9 +231,9 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             if (todoController.text.trim() != "") {
                               setState(() {
-                                TaskCounterModel.taskCount++;
+                                TaskCounter.taskCount++;
 
-                                isFirstTask = true;
+                                TaskCounter.isFirstTask = true;
 
                                 todos.add(
                                   TodoModel(
@@ -371,27 +369,7 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Tugas Hari Ini",
-              style: TextStyle(fontSize: 18),
-            ),
-            TaskCounterModel.taskCount < 1
-                ? !isFirstTask
-                    ? Text("")
-                    : Text(
-                        "Tugas selesai",
-                        style:
-                            TextStyle(fontSize: 12, color: Color(0xFF133EFF)),
-                      )
-                : Text(
-                    "Sisa ${TaskCounterModel.taskCount} lagi",
-                    style: TextStyle(fontSize: 12, color: Colors.red),
-                  ),
-          ],
-        ),
+        TaskCounter(),
         Column(
           children: todos.length < 1
               ? [

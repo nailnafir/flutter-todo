@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/models/task_counter_model.dart';
-import 'package:flutter_todo/models/todo_model.dart';
+import 'package:flutter_todo/widgets/task_counter.dart';
 
 class TodoItem extends StatefulWidget {
   final String title;
@@ -21,9 +20,9 @@ class _TodoItemState extends State<TodoItem> {
         setState(() {
           isDone = !isDone;
           if (isDone) {
-            TaskCounterModel.taskCount--;
+            TaskCounter.taskCount--;
           } else {
-            TaskCounterModel.taskCount++;
+            TaskCounter.taskCount++;
           }
         });
       },
