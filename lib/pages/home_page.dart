@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/models/todo_model.dart';
+import 'package:flutter_todo/pages/personal_page.dart';
+import 'package:flutter_todo/pages/work_page.dart';
 import 'package:flutter_todo/widgets/menu_item.dart';
 import 'package:flutter_todo/widgets/task_counter.dart';
 import 'package:flutter_todo/widgets/todo_item.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
@@ -355,8 +358,18 @@ class _HomePageState extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            MenuItem(title: "Personal", icon: Icons.person),
-            MenuItem(title: "Pekerjaan", icon: Icons.work_outlined),
+            GestureDetector(
+              onTap: () {
+                Get.to(PersonalPage());
+              },
+              child: MenuItem(title: "Personal", icon: Icons.person),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.to(WorkPage());
+              },
+              child: MenuItem(title: "Pekerjaan", icon: Icons.work_outlined),
+            ),
           ],
         ),
       ],
